@@ -35,7 +35,7 @@ $routes->get('/', 'Home::index');
 $routes->group('api', function($routes){
 	$routes->group('products',function($routes){
 
-		$routes->get('productsall','Products::products_all');
+		$routes->get('productsall/(:any)','Products::products_all/$1');
 		$routes->get('product/(:any)','Products::product/$1');
 		$routes->get('searchproducts/(:any)','Products::searchproducts/$1');
 		$routes->post('createproduct','Products::create_product');
