@@ -16,7 +16,7 @@ import Product_update from '@/page_admin/Product/Product_update'
 //
 import CSS_animations from '@/test_code/test_css_animations'
 import Vue_animations from '@/test_code/test_vue_animations'
-import DragDrop from '@/test_code/dragdrop'
+
 import DND from '@/test_code/dnd'
 
 
@@ -79,11 +79,7 @@ export default new Router({
       name: 'Vue_animations',
       component: Vue_animations
     },
-    {
-      path: '/drag',
-      name: 'drag',
-      component: DragDrop
-    },
+
     {
       path: '/dnd',
       name: 'dnd',
