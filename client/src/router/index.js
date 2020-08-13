@@ -18,6 +18,7 @@ import CSS_animations from '@/test_code/test_css_animations'
 import Vue_animations from '@/test_code/test_vue_animations'
 
 import DND from '@/test_code/dnd'
+import DNDbin from '@/test_code/dnd_bin'
 
 
 
@@ -84,6 +85,11 @@ export default new Router({
       path: '/dnd',
       name: 'dnd',
       component: DND
+    },
+    {
+      path: '/dnd_bin',
+      name: 'dnd_bin',
+      component: DNDbin
     },
 
 
