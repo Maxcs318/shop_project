@@ -10,6 +10,16 @@ import Product from '@/page/Product/Product'
 // ADMIN
 
 import Product_insert from '@/page_admin/Product/Product_insert'
+import Product_update from '@/page_admin/Product/Product_update'
+
+
+//
+import CSS_animations from '@/test_code/test_css_animations'
+import Vue_animations from '@/test_code/test_vue_animations'
+import DragDrop from '@/test_code/dragdrop'
+import DND from '@/test_code/dnd'
+
+
 
 Vue.use(Router)
 
@@ -37,6 +47,7 @@ export default new Router({
       name: 'Product',
       component: Product
     },
+    
 
 
 
@@ -48,11 +59,36 @@ export default new Router({
       name: 'Product_insert',
       component: Product_insert
     },
+    {
+      path: '/product_update/id=:Product_id',
+      name: 'Product_update',
+      component: Product_update
+    },
 
 
 
 
-
+// 
+    {
+      path: '/test_css_animations',
+      name: 'CSS_animations',
+      component: CSS_animations
+    },    
+    {
+      path: '/test_vue_animations',
+      name: 'Vue_animations',
+      component: Vue_animations
+    },
+    {
+      path: '/drag',
+      name: 'drag',
+      component: DragDrop
+    },
+    {
+      path: '/dnd',
+      name: 'dnd',
+      component: DND
+    },
 
 
     { path : "*", redirect : "/" }

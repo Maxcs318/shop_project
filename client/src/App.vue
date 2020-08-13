@@ -1,19 +1,11 @@
 <template>
-  <div class="container" id="app">
+  <div class="ddmk" id="app">
     
-    <!-- test rounter start -->
-      <div class="row ddmk">
-        <div class="col-6">
-          <router-link to="/">Go to Index</router-link>
-        </div>
-        <div class="col-6">
-          <router-link to="/products/page=1">Go to Products</router-link>
-        </div>
-      </div>
-
+    <!-- Nav start -->
+      <nav-bar></nav-bar>
       <br>
-
-    <!-- test rounter end -->
+    <!-- Nav end -->
+    <div class="container">
       <div class="row">
         <div class="col-12">
           <transition :name="transitionName" >
@@ -22,23 +14,34 @@
           </transition>
         </div>
       </div>
-    
+    </div>
   </div>
 </template>
 
 <script>
+
+import nav_Bar from "@/components/Nav/Navbar"
+
 export default {
   name: 'App',
   data(){
     return{
       transitionName:"slide-fade"
     }
-  }
+  },
+  components: {
+    navBar : nav_Bar  
+  },
   
 }
 </script>
 
 <style>
+  body {
+    margin: 0;
+    padding: 0; 
+    background: white;
+  }
   /* page */
   .page-enter,
   .page-leave-active {
@@ -68,10 +71,8 @@ export default {
     margin-top: 60px;
   }
   */
-  #app {
-    margin-top:20px;
-  }
-  .ddmk {
+  
+  /* .ddmk {
     text-align:center;
-  }
+  } */
 </style>

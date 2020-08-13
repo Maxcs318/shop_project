@@ -61,9 +61,9 @@ const store = new Vuex.Store({
         },
 
         // user
-        getThe_User(state){
-            return state.the_user
-        }
+        // getThe_User(state){
+        //     return state.the_user
+        // }
       
     }
 
