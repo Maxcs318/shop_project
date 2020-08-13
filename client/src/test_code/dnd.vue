@@ -133,7 +133,8 @@ export default {
         
     }
     .feedback {
-        background-color: rgb(248, 135, 135);
+        background-color: rgb(71, 33, 236);
+        color: white;
         /* border: 2px dashed black; */
     }
 
