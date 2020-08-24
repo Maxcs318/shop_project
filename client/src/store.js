@@ -23,13 +23,17 @@ const store = new Vuex.Store({
 
         the_user:'',
         log_on: localStorage.getItem('The_User') || null,
+
+        internetOnline: ''
         
     },
 //==========================================================================================================
 //==========================================================================================================
 
     mutations : {
-
+        Internet_status(state,OnlineStatus){
+            state.internetOnline = OnlineStatus
+        },
         
         
     },
@@ -38,6 +42,9 @@ const store = new Vuex.Store({
 //==========================================================================================================
 
     actions : {
+        Internet_status(context,OnlineStatus){
+            context.commit('Internet_status',OnlineStatus)
+        },
         Product_insert(context,product){
             axios.post(base_url +'products/createproduct',product)
             .then(response =>{
@@ -50,6 +57,10 @@ const store = new Vuex.Store({
 //==========================================================================================================
 
     getters : {
+        // internet status
+        getInternet_status(state){
+            return state.internetOnline
+        },
         // path for filse & image
         getPath_Files(state){
             return state.file_image_path

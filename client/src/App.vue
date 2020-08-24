@@ -4,6 +4,17 @@
     <!-- Nav start -->
       <nav-bar></nav-bar>
       <br>
+      <internetcon></internetcon>
+        <!-- test Footer start -->
+        <!-- <div class="">
+            <div class="row">
+                <div class="col-2 box">
+                    {{scroll}} , {{show_footer}}
+                </div>
+            </div>
+        </div> -->
+        <!-- test Footer end -->
+
     <!-- Nav end -->
     <div class="container">
       <div class="row">
@@ -15,23 +26,59 @@
         </div>
       </div>
     </div>
+    <!-- Footer start -->
+      <br>
+      <footer-bar v-if="show_footer==true || scroll==0"></footer-bar>
+    <!-- Footer end -->
+
   </div>
 </template>
 
 <script>
 
 import nav_Bar from "@/components/Nav/Navbar"
+import footer_Bar from "@/components/Nav/Footer"
+import internetcon from "@/components/CheckCon/InternetCon"
 
 export default {
   name: 'App',
   data(){
     return{
-      transitionName:"slide-fade"
+      transitionName:"slide-fade",
+      scroll: 0,
+      text:'',
+      show_footer:false
     }
   },
   components: {
-    navBar : nav_Bar  
+    navBar : nav_Bar,
+    footerBar : footer_Bar,
+    internetcon : internetcon
   },
+  watch:{
+    scroll(){
+      var scrollY_max = document.documentElement.scrollHeight - document.documentElement.clientHeight
+      if (this.scroll == scrollY_max) {
+        this.show_footer = true
+      }else{
+        this.show_footer = false
+      }
+    }
+  },
+  methods: {
+    handleScroll(e) {
+      this.scroll = window.scrollY
+    }
+  },
+  created() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  computed:{
+    
+  }
   
 }
 </script>
@@ -41,6 +88,7 @@ export default {
     margin: 0;
     padding: 0; 
     background: white;
+    height: 100%;
   }
   /* page */
   .page-enter,
@@ -75,4 +123,14 @@ export default {
   /* .ddmk {
     text-align:center;
   } */
+  .box {
+    background-color: gray;
+    text-align: center;
+    width: 100%;
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 50;
+  }
 </style>
