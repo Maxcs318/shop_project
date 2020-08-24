@@ -15,12 +15,12 @@
                 <li class="nav-item active">
                     <router-link class="nav-link" to="/products/page=1">Products</router-link>
                 </li>
-                <li class="nav-item active">
+                <!-- <li class="nav-item active">
                     <router-link class="nav-link" to="/test_css_animations">CSS-animations</router-link>
                 </li>
                 <li class="nav-item active">
                     <router-link class="nav-link" to="/test_vue_animations">Vue-animations</router-link>
-                </li>
+                </li> -->
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

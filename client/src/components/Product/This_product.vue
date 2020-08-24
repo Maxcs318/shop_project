@@ -12,7 +12,7 @@
             <div class="carousel-item active">
               <img :src="getImgUrl(data_product.p_image)" width="100%"> 
             </div>
-            <div class="carousel-item" v-for="image_product in data_product.product_another_image">
+            <div class="carousel-item" v-for="(image_product,index) in data_product.product_another_image" :key="index">
               <img :src="getImgUrl(image_product.pi_image)" width="100%">
             </div>
             

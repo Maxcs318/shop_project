@@ -14,6 +14,7 @@ import Product_update from '@/page_admin/Product/Product_update'
 
 
 //
+import Test from '@/test_code/test'
 import CSS_animations from '@/test_code/test_css_animations'
 import Vue_animations from '@/test_code/test_vue_animations'
 
@@ -70,6 +71,11 @@ export default new Router({
 
 
 // 
+    {
+      path: '/test',
+      name: 'Test',
+      component: Test
+    }, 
     {
       path: '/test_css_animations',
       name: 'CSS_animations',
