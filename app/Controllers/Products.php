@@ -4,6 +4,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 header('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 header('Access-Control-Allow-Credentials', true);
+header('Content-Type: text/html; charset=utf-8');
 
     // $id = md5(date("Y/m/d"));
 
@@ -20,7 +21,7 @@ class Products extends BaseController
         $limit_in = 9 ;
         $start_in = ($page*$limit_in)-$limit_in;
 
-        $products = $productsModel->findAll($limit_in,$start_in); // limit  , start index 
+        $products = $productsModel->orderBy('p_id','desc')->findAll($limit_in,$start_in); // limit  , start index 
 
         // $products = $productsModel->findAll();
 
@@ -55,9 +56,12 @@ class Products extends BaseController
     // s
     public function searchproducts($keyword)
     {
+        $keyword = urldecode($keyword);
+        // echo $keyword;
+        // exit;
         $productsModel = new ProductsModel();
 
-        $product = $productsModel->like('p_name',$keyword,'both')->findAll();
+        $product = $productsModel->like('p_name',$keyword,'both')->orderBy('p_id','desc')->findAll();
 
         return $this->response->setStatusCode(200)->setJSON($product);
     }

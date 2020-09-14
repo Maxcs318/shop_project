@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <br />
-                    <h5>รูปภาพอื่่นๆของ สินค้า [ {{files.length}} ] Size Files All [ {{max_size_file}} byte ]</h5>
+                    <h5>รูปภาพอื่นๆของ สินค้า [ {{files.length}} ] Size Files All [ {{max_size_file}} byte ]</h5>
                     <input
                         type="file"
                         ref="files"
