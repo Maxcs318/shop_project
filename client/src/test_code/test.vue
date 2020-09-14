@@ -15,7 +15,7 @@
                         Product Name : {{products.p_name}} <br>
                         Description : {{products.p_description}} <br>
                         Price : {{products.p_price}} <br>
-                        quantity : {{products.p_quantity}} <br>
+                        quantity : {{products.p_amount}} <br>
                     </div>
                     </div>
                 </router-link> 

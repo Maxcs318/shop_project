@@ -50,7 +50,7 @@
     
     <p style="text-align: right;"> ราคา {{data_product.p_price}} บาท</p>
     
-    <p style="text-align: right;">จำนวนที่เหลือ {{data_product.p_quantity}} ชิ้น</p>
+    <p style="text-align: right;">จำนวนที่เหลือ {{data_product.p_amount}} ชิ้น</p>
 
     <!-- <div v-for=" image_product in data_product.product_another_image ">
       <img :src="getImgUrl(image_product.pi_image)" width="100%">

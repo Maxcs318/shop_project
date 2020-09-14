@@ -19,7 +19,7 @@
             
             <p style="text-align: right;"> ราคา {{data_product.p_price}} บาท</p>
             
-            <p style="text-align: right;">จำนวนที่เหลือ {{data_product.p_quantity}} ชิ้น</p>
+            <p style="text-align: right;">จำนวนที่เหลือ {{data_product.p_amount}} ชิ้น</p>
 
         </div>
         <div class="col-md-3 col-12"></div>

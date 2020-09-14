@@ -78,7 +78,7 @@
                             จำนวน
                         <input
                             type="text"
-                            v-model="product.p_quantity"
+                            v-model="product.p_amount"
                             class="form-control"
                             placeholder="จำนวนสินค้า"
                             @keypress="isNumber($event)"
@@ -152,7 +152,7 @@ export default {
             p_description: "",
             p_image: "",
             p_price: "",
-            p_quantity: "",
+            p_amount: "",
             // p_category: "",
             // p_create_date: ""
         },
