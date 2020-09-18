@@ -3,11 +3,11 @@ import Router from 'vue-router'
 
 import IndexPage from '@/page/IndexPage'
 
-import products from '@/page/user/products'
-import product from '@/page/user/product'
+import products from '@/page/user/product/products'
+import product from '@/page/user/product/product'
 
 // Admin 
-import product_insert from '@/page/admin/product_insert'
+import product_insert from '@/page/admin/product/product_insert'
 
 // Test
 import test_01 from '@/test_code/test_01'
