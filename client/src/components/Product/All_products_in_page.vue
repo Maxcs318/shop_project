@@ -1,7 +1,7 @@
 <template>
-  <div class="row" v-if="Products_load">
-    
-    <div class="col-12 col-md-6" v-for=" products in data_products ">
+  <div class="row">
+    <!-- {{Category_now}} -->
+    <div class="col-12 col-md-4" v-for=" (products,index) in data_products " :key="index">
       <router-link :to=" '/product/id='+products.p_id">
         <div class="row product-show-now">
           <div class="col-md-4 col-12">
@@ -27,19 +27,20 @@
           <center>
               <div class="btn-group" role="group" aria-label="Second group" >
                 
-                <router-link :to=" '/products/page='+1">
-                  <button type="button" class="btn btn-light" title="First page"><<</button>
+                <router-link :to=" '/products/category='+Category_now+'/page='+1">
+                  <button type="button" class="btn btn-light" title="First page"> {{startpoint}} </button>
                 </router-link>
 
-                <div v-for=" (run_page,index) in length_page " 
-                v-if=" run_page >= page_start && run_page <= page_end ">
-                  <router-link :to=" '/products/page='+run_page">
-                    <button type="button" v-bind:class="{ active: isActive[index+1] }" class="btn btn-light"> {{run_page}} </button>
-                  </router-link>
-                </div>
-
-                <router-link :to=" '/products/page='+length_page">
-                  <button type="button" class="btn btn-light" title="Last page" >>></button>
+                <!-- <div v-if=" run_page >= page_start && run_page <= page_end "> -->
+                    <div v-for=" (run_page,index) in length_page " :key="index">
+                    <router-link :to=" '/products/category='+Category_now+'/page='+run_page">
+                        <button type="button" v-bind:class="{ active: isActive[index+1] }" class="btn btn-light"> {{run_page}} </button>
+                    </router-link>
+                    </div>
+                <!-- </div> -->
+                
+                <router-link :to=" '/products/category='+Category_now+'/page='+length_page">
+                  <button type="button" class="btn btn-light" title="Last page" > {{endpoint}} </button>
                 </router-link>
 
               </div>
@@ -59,13 +60,15 @@ import axios from "axios"
 
 export default {
   name: 'All_products',
-  props:["Page_now"],
+  props:["Page_now","Category_now"],
   data () {
     return {
       text:"All_products_in_page",
       data_size:'',
-      data_products:'',
-      
+      data_products:null,
+      startpoint:'<<',
+      endpoint:'>>',
+
       page: 0,
       data_in_page: 9,
       length_page: 0,
@@ -77,25 +80,22 @@ export default {
   },
   methods:{
     getImgUrl(pic) {
-      return this.Path_files+'products/'+pic
+      return this.$store.getters.getPath_Files+'products/'+pic
     },
-    
+    getData(){
+      axios.get('http://shop_project.com/api/products/productsall/'+this.Page_now)
+      .then(response => {
+          console.log(response)
+          this.data_size = response.data[0],
+          this.data_products = response.data[1]
+      })
+    }
   },
-  computed: {
-    Products_load(){
-      var time_fetch = 0
-      if(this.data_products != ''){
-        time_fetch = 1000
-      }
-
-      setTimeout(() => {
-        axios.get('http://shop_project.com/api/products/productsall/'+this.Page_now)
-        .then(response => {
-            console.log(response)
-            this.data_size = response.data[0],
-            this.data_products = response.data[1]
-        })
-  
+  watch:{
+    $route() {
+      this.getData()
+    },
+    data_products(){
         var setpage = this.Page_now;
         var p_conpute = 2;
         var p_start = setpage;
@@ -122,14 +122,11 @@ export default {
             this.isActive.push(false);
           }
         }
-      }, time_fetch)
-
-      return true;
-    },
-    Path_files(){
-      return this.$store.getters.getPath_Files
-    },
-  }
+    }
+  },
+  created() {
+    this.getData()
+  },
 }
 </script>
 

@@ -1,6 +1,5 @@
 <template>
-  <div class="col-12 product-show" v-if="Product && data_product!=null && data_product!=''">
-
+  <div class="col-12 product-show" v-if="data_product!=''">
     <br>
     <h3 style="text-align: center;">{{data_product.p_name}}</h3>
     <div class="row">
@@ -91,19 +90,7 @@ export default {
     
   },
   methods:{
-    getImgUrl(pic) {
-      return this.Path_files+'products/'+pic
-    },
-    
-  },
-  computed:{
-    Product(){
-      var time_fetch = 0
-      if(this.data_product != ''){
-        time_fetch = 1000
-      }
-
-      setTimeout(() => {
+    getData(){
         axios.get('http://shop_project.com/api/products/product/'+this.product_id)
         .then(response => {
             console.log(response.data)
@@ -114,15 +101,21 @@ export default {
                 this.$router.push('/');
               }
         })
-      }, time_fetch)
-        
+    },
+    getImgUrl(pic) {
+      if(pic != undefined){
+        return this.$store.getters.getPath_Files+'products/'+pic
+      }
+    },
+  },
+  watch:{
+    $route() {
+      this.getData()
+    },
+  },
+  async created(){
+    await this.getData()
       
-      return true
-    },
-    Path_files(){
-      return this.$store.getters.getPath_Files
-    },
-
   }
 }
 </script>

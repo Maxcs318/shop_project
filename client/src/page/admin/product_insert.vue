@@ -141,10 +141,10 @@
 </template>
 <script>
 
-import axios from "axios";
+// import axios from "axios";
 
 export default {
-    name: 'Product_insert',
+    name: 'product_insert',
     data () {
         return {
         product: {
@@ -196,13 +196,14 @@ export default {
         ChooseFiles() {
             document.getElementById("anotherImage").click();
         },
-        handleFileUpload(event) {
+        handleFileUpload() {
             this.files = [];
             this.another_image_pre = [];
 
-            var i = 0;
             let uploadedFiles = this.$refs.files.files;
-            for (var i = 0; i < uploadedFiles.length; i++) {
+            
+            var i ;
+            for (i = 0; i < uploadedFiles.length; i++) {
                 this.files.push(uploadedFiles[i]);
                 this.max_size_file = this.max_size_file + uploadedFiles[i].size;
                 this.another_image_pre.push(URL.createObjectURL(uploadedFiles[i]));
@@ -227,8 +228,9 @@ export default {
                 var FD = new FormData();
                 FD.append("previewFile_image", this.fileimage);
                 if (this.files.length != 0) {
-                    for (var i = 0; i < this.files.length; i++) {
-                        FD.append("anotherFiles_image" + i, this.files[i]);
+                    var j ;
+                    for ( j = 0; j < this.files.length; j++) {
+                        FD.append("anotherFiles_image" + j, this.files[j]);
                     }
                 }
                 FD.append("anotherFiles_image_length",this.files.length);

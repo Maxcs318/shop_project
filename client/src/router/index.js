@@ -2,25 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import IndexPage from '@/page/IndexPage'
-import Products_index from '@/page/Product/Products_index'
-import Product from '@/page/Product/Product'
 
+import products from '@/page/user/products'
+import product from '@/page/user/product'
 
+// Admin 
+import product_insert from '@/page/admin/product_insert'
 
-// ADMIN
-
-import Product_insert from '@/page_admin/Product/Product_insert'
-import Product_update from '@/page_admin/Product/Product_update'
-
-
-//
-import Test from '@/test_code/test'
-import CSS_animations from '@/test_code/test_css_animations'
-import Vue_animations from '@/test_code/test_vue_animations'
-
-import DND from '@/test_code/dnd'
-import DNDbin from '@/test_code/dnd_bin'
-
+// Test
+import test_01 from '@/test_code/test_01'
 
 
 Vue.use(Router)
@@ -40,64 +30,28 @@ export default new Router({
       component: IndexPage
     },
     {
-      path: '/products/page=:Page_num',
-      name: 'Products_index',
-      component: Products_index
+      path: '/products/category=:Category_id/page=:Page_num',
+      name: 'products',
+      component: products
     },
     {
       path: '/product/id=:Product_id',
-      name: 'Product',
-      component: Product
+      name: 'product',
+      component: product
     },
-    
 
-
-
-
-// ADMIN
-
+// Admin
     {
       path: '/product_insert',
-      name: 'Product_insert',
-      component: Product_insert
+      name: 'product_insert',
+      component: product_insert
     },
+// Test
     {
-      path: '/product_update/id=:Product_id',
-      name: 'Product_update',
-      component: Product_update
+      path: '/test_01',
+      name: 'test_01',
+      component: test_01
     },
-
-
-
-
-// 
-    {
-      path: '/test',
-      name: 'Test',
-      component: Test
-    }, 
-    {
-      path: '/test_css_animations',
-      name: 'CSS_animations',
-      component: CSS_animations
-    },    
-    {
-      path: '/test_vue_animations',
-      name: 'Vue_animations',
-      component: Vue_animations
-    },
-
-    {
-      path: '/dnd',
-      name: 'dnd',
-      component: DND
-    },
-    {
-      path: '/dnd_bin',
-      name: 'dnd_bin',
-      component: DNDbin
-    },
-
 
     { path : "*", redirect : "/" }
   ],
@@ -110,7 +64,7 @@ export default new Router({
     if (savedPosition) {
       position = savedPosition
     }
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve(position)
       }, 250)

@@ -13,7 +13,7 @@
                     <router-link class="nav-link" to="/">Home</router-link>
                 </li>
                 <li class="nav-item active">
-                    <router-link class="nav-link" to="/products/page=1">Products</router-link>
+                    <router-link class="nav-link" to="/products/category=all/page=1">Products</router-link>
                 </li>
                 <!-- <li class="nav-item active">
                     <router-link class="nav-link" to="/test_css_animations">CSS-animations</router-link>

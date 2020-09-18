@@ -101,7 +101,7 @@ export default {
             console.log(event)
         },
         dragStart:e=>{
-            // console.log(e.data)
+            console.log(e.data)
         }
     },
     computed: {

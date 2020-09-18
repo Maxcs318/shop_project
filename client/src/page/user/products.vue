@@ -1,8 +1,8 @@
 <template>
   <div class="col-12 products-show">
 
-    <productsAll :Page_now = this.$route.params.Page_num ></productsAll>
-    
+    <productsAll :Category_now = this.$route.params.Category_id :Page_now = this.$route.params.Page_num ></productsAll>
+
   </div>
 </template>
 
@@ -11,7 +11,7 @@
 import products_show from "@/components/Product/All_products_in_page"
 
 export default {
-  name: 'Products_index',
+  name: 'products',
 //   props:["product_id"],
   metaInfo() {
     return { 
@@ -27,7 +27,7 @@ export default {
   },
   data () {
     return {
-      text:"Product Index"
+      text:"product "
     }
   },
   components: {
