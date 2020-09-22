@@ -14,6 +14,7 @@ export default {
 </script>
 <style>
     .footer {
+        z-index: 999;
         color: white;
         text-align: center;
         width: 100%;

@@ -15,7 +15,7 @@ export default {
 //   props:["product_id"],
   metaInfo() {
     return { 
-      title: "Products All",
+      title: "Products Page "+this.$route.params.Page_num,
       meta: [
           { name: 'description', content:  'this page have products'},
           { property: 'og:title', content: "test test"},

@@ -1,27 +1,24 @@
 <template>
   <div class="row">
     <!-- {{Category_now}} -->
-    <div class="col-12 col-md-4" v-for=" (products,index) in data_products " :key="index">
+    <div class="col-12 col-md-4 zoom" v-for=" (products,index) in data_products " :key="index">
       <router-link :to=" '/product/id='+products.p_id">
         <div class="row product-show-now">
-          <div class="col-md-4 col-12">
+          <div class="col-md-12 col-12">
             <img :src="getImgUrl(products.p_image)" width="100%"> 
           </div>
-          <div class="col-md-8 col-12">
+          <div class="col-md-12 col-12 detail-product">
             ID : {{products.p_id}} <br>
-            Product Name : {{products.p_name}} <br>
-            Description : {{products.p_description}} <br>
+            {{products.p_name}} <br>
+            <!-- Description : {{products.p_description}} <br> -->
             Price : {{products.p_price}} <br>
-            quantity : {{products.p_amount}} <br>
+            quantity : {{products.p_amount}} 
           </div>
         </div>
       </router-link> 
-      <br>
     </div>
     
-    <div class="col-12"> <br> </div>
-
-    <div class="col-12" style="text-align: center;" v-if="length_page > 1">
+    <div class="col-12 paging" style="text-align: center;" v-if="length_page > 1">
       <div class="row">
         <div class="col-12">
           <center>
@@ -48,8 +45,6 @@
         </div>
       </div>
     </div>
-
-    <div class="col-12"> <br> </div>
 
   </div>
 </template>
@@ -132,7 +127,30 @@ export default {
 
 <style scoped>
   .product-show-now{
-    border: 0px dashed 
+    border: 0px dashed; 
+    padding: 10px;
   }
+  
   a {  text-decoration: none;}
+  
+  .zoom{
+    transition: transform .2s; /* Animation */
+  }
+  .zoom:hover {
+    border: 1px solid rgb(114, 172, 247);
+    /* padding: 10px; */
+    border-radius: 10px;
+    z-index: 100;
+    background-color: white;
+    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
+  .detail-product{
+    text-align: center;
+  }
+
+  .paging{
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
 </style>

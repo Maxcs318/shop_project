@@ -8,6 +8,7 @@ import product from '@/page/user/product/product'
 
 // Admin 
 import product_insert from '@/page/admin/product/product_insert'
+import product_update from '@/page/admin/product/product_update'
 
 // Test
 import test_01 from '@/test_code/test_01'
@@ -46,6 +47,13 @@ export default new Router({
       name: 'product_insert',
       component: product_insert
     },
+    {
+      path: '/product_update/id=:Product_id',
+      name: 'product_update',
+      component: product_update
+    },
+
+
 // Test
     {
       path: '/test_01',

@@ -1,60 +1,44 @@
 <template>
   <div class="col-12 product-show" v-if="data_product!=''">
-    <br>
-    <h3 style="text-align: center;">{{data_product.p_name}}</h3>
     <div class="row">
-      <div class="col-12 col-md-3"></div>
       <div class="col-12 col-md-6">
-        <!-- start -->
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel" v-if="data_product!=''">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img :src="getImgUrl(data_product.p_image)" width="100%"> 
-            </div>
-            <div class="carousel-item" v-for="(image_product,index) in data_product.product_another_image" :key="index">
-              <img :src="getImgUrl(image_product.pi_image)" width="100%">
-            </div>
-            
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev" v-if="data_product.product_another_image.length>0">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next" v-if="data_product.product_another_image.length>0">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-        <!-- end -->
-      </div>
-      <div class="col-12 col-md-3"></div>
-      <div class="col-12 col-md-12">
-        <br>
-        <div class="row">
-          <div class="col-2 col-md-2">
-            <br>
-            <img :src="getImgUrl(data_product.p_image)" width="100%"> 
-          </div>
-          <div class="col-2 col-md-2" v-for=" image_product in data_product.product_another_image " :key="image_product.length">
-            <br>
+      
+        <!--  image show-slide start -->
+        <carousel-3d class="this-product-image">
+          <slide v-for="(slide, i) in data_product.product_another_image" :index="i" :key="i" style="border-style: none;">
+            <template slot-scope="{ index, isCurrent, leftIndex, rightIndex }">
+              <img :data-index="index" :class="{ current: isCurrent, onLeft: (leftIndex >= 0), onRight: (rightIndex >= 0) }" :src="getImgUrl(slide.pi_image)">
+            </template>
+          </slide>
+        </carousel-3d>
+        <!-- image show-slide end -->
+        
+        <!-- another image start-->
+        <!-- <div class="row">
+          <div class="col-4 col-md-4 another-image-products" v-for=" image_product in data_product.product_another_image " :key="image_product.length">
             <img :src="getImgUrl(image_product.pi_image)" width="100%"> 
           </div>
-        </div>
+        </div> -->
+        <!-- another image end -->
+
       </div>
+      <div class="col-12 col-md-6">
+        
+        <!-- <p style="text-align: center;">{{data_product.p_image}}</p> -->
+        
+        <h3 style="text-align: center;">{{data_product.p_name}}</h3>
+
+        <p style="text-indent: 50px; padding-top:15px">Detail {{data_product.p_description}}</p>
+        
+        <p style="text-align: right;"> ราคา {{data_product.p_price}} บาท</p>
+        
+        <p style="text-align: right;">จำนวนที่เหลือ {{data_product.p_amount}} ชิ้น</p>
+
+      </div>
+     
     </div>    
-
-    <!-- <p style="text-align: center;">{{data_product.p_image}}</p> -->
     
-    <p style="text-indent: 50px;">Detail {{data_product.p_description}}</p>
     
-    <p style="text-align: right;"> ราคา {{data_product.p_price}} บาท</p>
-    
-    <p style="text-align: right;">จำนวนที่เหลือ {{data_product.p_amount}} ชิ้น</p>
-
-    <!-- <div v-for=" image_product in data_product.product_another_image ">
-      <img :src="getImgUrl(image_product.pi_image)" width="100%">
-      <p> {{image_product.pi_image}} </p>
-    </div> -->
 
   </div>
 </template>
@@ -62,6 +46,8 @@
 <script>
 
 import axios from "axios"
+
+import { Carousel3d, Slide } from 'vue-carousel-3d';
 
 export default {
   name: 'This_product',
@@ -72,6 +58,10 @@ export default {
       data_product:'',
 
     }
+  },
+  components: {
+    Carousel3d,
+    Slide
   },
   metaInfo() {
     if(this.data_product!=null){
@@ -95,6 +85,9 @@ export default {
         .then(response => {
             console.log(response.data)
             this.data_product = response.data
+              if(this.data_product.product_another_image){
+                this.data_product.product_another_image.unshift( {pi_image:this.data_product.p_image} );
+              }
             // if id not found
               if(this.data_product == null){
                 console.log('this page error')
@@ -121,5 +114,11 @@ export default {
 </script>
 
 <style scoped>
-  
+  .another-image-products{
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .this-product-image{
+    transform: scale(1.2);
+  }
 </style>

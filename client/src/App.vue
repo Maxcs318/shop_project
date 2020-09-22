@@ -3,7 +3,7 @@
     
     <!-- Nav start -->
       <nav-bar></nav-bar>
-      <br>
+      
       <internetcon></internetcon>
         <!-- test Footer start -->
         <!-- <div class="">
@@ -16,7 +16,7 @@
         <!-- test Footer end -->
 
     <!-- Nav end -->
-    <div class="container">
+    <div class="container main-content">
       <div class="row">
         <div class="col-12">
           <transition :name="transitionName" >
@@ -26,9 +26,10 @@
         </div>
       </div>
     </div>
+
     <!-- Footer start -->
-      <br>
       <footer-bar v-if="show_footer==true || scroll==0"></footer-bar>
+      <!-- <footer-bar v-if="show_footer==true"></footer-bar> -->
     <!-- Footer end -->
 
   </div>
@@ -132,5 +133,10 @@ export default {
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 50;
+  }
+
+  .main-content{
+    padding-top: 25px;
+    padding-bottom: 25px;
   }
 </style>

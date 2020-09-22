@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import store from "./store"
 
+// 3d image show
+import Carousel3d from 'vue-carousel-3d';
+
 // alert swal
 import VueSwal from 'vue-swal'
  
@@ -16,7 +19,8 @@ import VueMeta from 'vue-meta'
 Vue.use(VueMeta)
 // swal
 Vue.use(VueSwal)
-
+// 3d image show
+Vue.use(Carousel3d);
 
 /* eslint-disable no-new */
 new Vue({
