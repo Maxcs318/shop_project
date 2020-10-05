@@ -142,7 +142,7 @@ export default {
     border-radius: 10px;
     z-index: 100;
     background-color: white;
-    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
 
   .detail-product{

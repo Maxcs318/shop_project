@@ -1,7 +1,7 @@
 <template>
   <div class="col-12 product-show" v-if="data_product!=''">
     <div class="row">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-12">
       
         <!--  image show-slide start -->
         <carousel-3d class="this-product-image">
@@ -11,6 +11,7 @@
             </template>
           </slide>
         </carousel-3d>
+        <p class="recommend"> slide or click for see another image </p>
         <!-- image show-slide end -->
         
         <!-- another image start-->
@@ -29,6 +30,9 @@
         <h3 style="text-align: center;">{{data_product.p_name}}</h3>
 
         <p style="text-indent: 50px; padding-top:15px">Detail {{data_product.p_description}}</p>
+
+      </div>
+      <div class="col-12 col-md-6">
         
         <p style="text-align: right;"> ราคา {{data_product.p_price}} บาท</p>
         
@@ -119,6 +123,18 @@ export default {
     padding-bottom: 15px;
   }
   .this-product-image{
-    transform: scale(1.2);
+    /* transform: scale(1.1); */
+    width: 100%;
+  }
+  .this-product-image:hover {
+    /* transform: scale(1.2); */
+    cursor: pointer;
+  }
+  .this-product-image:active {
+    cursor: grabbing;
+  }
+  .recommend{
+    text-align: center;
+    color: blue;
   }
 </style>
