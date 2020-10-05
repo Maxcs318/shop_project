@@ -1,31 +1,28 @@
 <template>
     <div class="shop-nav">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button @click="changNav_text()" ref="navbutton" class="navbar-toggler ml-auto nav-tog" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class=""> {{nav_tog_text}} </span> 
+                <!-- navbar-toggler-icon -->
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-                <router-link class="navbar-brand" to="/">Shop</router-link>
+                <ul class="navbar-nav mt-2 mt-lg-0 align-items-center">
 
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <router-link class="nav-link" to="/">Home</router-link>
-                </li>
-                <li class="nav-item active">
-                    <router-link class="nav-link" to="/products/category=all/page=1">Products</router-link>
-                </li>
-                <!-- <li class="nav-item active">
-                    <router-link class="nav-link" to="/test_css_animations">CSS-animations</router-link>
-                </li>
-                <li class="nav-item active">
-                    <router-link class="nav-link" to="/test_vue_animations">Vue-animations</router-link>
-                </li> -->
+                    <li class="nav-item active">
+                        <router-link class="nav-link align-self-center" to="/">
+                         <h4> Shop </h4>
+                        </router-link>
+                    </li>
+                    <li class="nav-item active">
+                        <router-link class="nav-link" to="/">Home</router-link>
+                    </li>
+                    <li class="nav-item active">
+                        <router-link class="nav-link" to="/products/category=all/page=1">Products</router-link>
+                    </li>
+
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-                </form>
+
             </div>
         </nav>
         
@@ -36,8 +33,36 @@
 export default {
   name: 'Navbar',
   data () {
+    // console.log(this.$route.path)
     return {
-      text:"navbar"
+      text:"navbar",
+      nav_tog_text:'A'
+    }
+  },
+  watch:{
+    $route() {
+        if (this.nav_tog_text == 'X'){
+            this.changNav()
+        }
+    },
+  },
+  methods:{
+    async changNav_text(){
+        let el = document.getElementById('navbarTogglerDemo01');
+        if (el.className == 'navbar-collapse collapse show'){
+            // console.log('show')
+            await setTimeout(() => {
+                this.nav_tog_text = 'A'
+            }, 500);
+        } else {
+            // console.log('none')
+            await setTimeout(() => {
+                this.nav_tog_text = 'X'
+            }, 500);
+        }
+    },
+    async changNav(){
+        await this.$refs.navbutton.click()
     }
   }
   
@@ -45,8 +70,24 @@ export default {
 </script>
 
 <style scoped>
-  a {  
+    a {  
       text-decoration: none;
       color: white;
+      transition: transform .2s;
     }
+
+    a:hover {
+        transform: scale(1.3);
+    }
+    .nav-tog {
+        color: white;
+        transform: rotate(360deg);
+        transition: transform 0.5s;
+    }
+
+    .nav-tog:active{
+        transform: rotate(0deg);
+        transition:  0s;
+    }
+
 </style>
