@@ -86,7 +86,12 @@
               รูปภาพอื่นๆ ของสินค้า
             </div>
             <div class="col-lg-3 col-6" v-for="(image_product,index0) in data_product.product_another_image" :key="index0">
-              <br> <img :src="getImgUrl(image_product.pi_image)" width="100%">
+              <br> 
+              <img v-if="image_product.pi_product_id != 'delete'" :src="getImgUrl(image_product.pi_image)" width="100%">
+              <img v-else class="image-will-delete" :src="getImgUrl(image_product.pi_image)" width="100%">
+
+              <button v-if="image_product.pi_product_id != 'delete' " type="button" class="form-control btn-danger" @click="RemoveOldImage(image_product.pi_id)" >Remove</button>
+              <button v-else type="button" class="form-control btn-primary" @click="UnRemoveOldImage(image_product.pi_id)" >UnRemove</button>
             </div>
           </div>
           <br>
@@ -161,6 +166,8 @@ export default {
 
       data_product_category:'',
       data_load_category:false,
+
+      OldImageDelete:[]
 
     }
   },
@@ -247,6 +254,30 @@ export default {
       this.files.splice(index, 1);
       this.another_image_pre.splice(index, 1);
     },
+    RemoveOldImage:function(image_id) {
+      this.OldImageDelete.push({pi_id:image_id})
+      console.log(this.OldImageDelete)
+      // this.data_product.product_another_image
+      let index = this.data_product.product_another_image.findIndex(pi => pi.pi_id == image_id)
+      if(index > -1){
+        // this.data_product.product_another_image[index].push({willDelete:true})
+        this.data_product.product_another_image[index].pi_product_id = 'delete'
+        console.log('Go',this.data_product.product_another_image[index].pi_product_id)
+      }
+    },
+    UnRemoveOldImage:function(image_id) {
+      let index = this.OldImageDelete.findIndex(pi => pi.pi_id == image_id)
+      if(index > -1){
+        this.OldImageDelete.splice(index,1)
+        console.log(this.OldImageDelete)
+      }
+      let index2 = this.data_product.product_another_image.findIndex(pi => pi.pi_id == image_id)
+      if(index2 > -1){
+        // this.data_product.product_another_image[index].push({willDelete:true})
+        this.data_product.product_another_image[index2].pi_product_id = this.data_product.p_id
+        console.log('Go',this.data_product.product_another_image[index2].pi_product_id)
+      }
+    },
     submitProduct_update() {
       var jsonProduct = JSON.stringify(this.data_product);
       var FD = new FormData();
@@ -298,5 +329,8 @@ export default {
 </script>
 
 <style scoped>
-  
+  .image-will-delete{
+    /* filter: grayscale(100%); */
+    filter: grayscale(100%) drop-shadow(0px 0px 10px gray);
+  }
 </style>
